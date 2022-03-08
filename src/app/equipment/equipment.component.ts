@@ -1,3 +1,4 @@
+import { isNgTemplate } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -21,6 +22,7 @@ export class EquipmentComponent implements OnInit {
    cargoMass: number = 0;
    maximumAllowedMass: number = 2000;
    maxItems: number = 10;
+   massBudgetRemaining: number = this.maximumAllowedMass;
 
    constructor() { }
 
@@ -28,4 +30,10 @@ export class EquipmentComponent implements OnInit {
 
    // Code your addItem function here:
    
+   addItem(name: string, mass: number) {
+    this.cargoHold.push({name: name, mass: mass});
+    this.cargoMass += mass;
+    this.massBudgetRemaining -= mass;
+  }
+
 }
